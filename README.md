@@ -11,3 +11,7 @@
 - run ```npm run server```
 - in another window run ```npm run build```
 - it should render and open up your browser!
+
+#TODOs
+- Have client-side code pick up state
+- Add redux
