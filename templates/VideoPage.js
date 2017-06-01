@@ -2,30 +2,22 @@
  * This template is used as an entrypoint for Hypernova.
  * Notice the 'renderReact' method being used.
  */
-const React = require('react');
-const {renderReact} = require('hypernova-react');
-const VideoCarousel = require('../components/VideoCarousel');
-const VideoItem = require('../components/VideoItem');
+// import { renderReactRedux } from 'hypernova-react-redux';
+// import configureStore from '../stores/store.js';
+// import VideoCarousel from '../components/VideoCarousel';
 
-class VideoPage extends React.Component {
+// const VideoPage = renderReactRedux('../components/VideoCarousel.js', VideoCarousel, configureStore);
 
-    constructor(props) {
-        super(props);
-    }
+// console.log(VideoPage);
 
-    render() {
-        const {header, videos} = this.props;
+// export default VideoPage;
 
-        return (
-            <div>
-                <VideoCarousel
-                    header={header}
-                    videos={videos}
-                />
-            </div>
-        );
+import { renderReactRedux } from 'hypernova-react-redux';
+import ConnectedComponent from '../containers/VideoPage';
+import configureStore from '../stores/store';
 
-    }
-}
-
-module.exports = renderReact('VideoCarousel', VideoPage);
+export default renderReactRedux(
+  'VideoPage',
+  ConnectedComponent,
+  configureStore
+);
