@@ -4,33 +4,59 @@
  */
 import React from 'react';
 import {Component} from 'react';
-import {renderReact} from 'hypernova-react';
+
+import CSSModules from 'react-css-modules';
+import styles from './VideoCarousel.css';
 
 // Load child components
-import VideoItem from './VideoItem';
+import VideoItem from '../VideoItem';
 
 class VideoCarousel extends Component {
 
     constructor(props) {
-        console.log(props);
         super(props);
     }
 
     render() {
-        let {header, videos, count, onIncrement} = this.props;
+        let {header, videos, count, onIncrement, onDecrement, onLoadMore} = this.props;
         let videoItems = this.renderVideoItems();
 
         return (
-            <div>
-                <h1 onClick={(e) => onIncrement() }>
+            <div className={ styles.main }>
+
+                <h1>
                     {header}
                 </h1>
-                <h2>
-                    Count: {count}
-                </h2>
+
+                <div
+                    className={ styles.counterContainer }
+                >
+                    <button type="button" onClick={(e) => onDecrement() }>
+                        -
+                    </button>
+
+                    <strong>
+                        Count: {count}
+                    </strong>
+
+                    <button type="button" onClick={(e) => onIncrement() }>
+                        +
+                    </button>
+
+                </div>
+
                 <div>
+                    <button
+                        type="button" onClick={ (e) => onLoadMore() }
+                        >
+                        Load more
+                    </button>
+                </div>
+
+                <div className={ styles.items }>
                     {videoItems}
                 </div>
+
             </div>
         );
 
@@ -71,4 +97,7 @@ VideoCarousel.defaultProps = {
     count: 1
 };
 
-module.exports = VideoCarousel;
+// export default VideoCarousel;
+
+export default CSSModules(VideoCarousel, styles);
+// module.exports = VideoCarousel;

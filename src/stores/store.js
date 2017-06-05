@@ -24,6 +24,14 @@ function counterReducer(state = initialState, action) {
                 count: state.count - 1
             });
 
+        case 'LOAD_MORE':
+            return Object.assign({}, state, {
+                videos: [...state.videos, {
+                    id: state.videos.length + 1,
+                    title: 'This is video #' + (state.videos.length + 1)
+                }]
+            });
+
         default:
             return state;
 
@@ -34,10 +42,24 @@ function counterReducer(state = initialState, action) {
 function configureStore(preloadedState) {
     const storeState = counterReducer(undefined, {});
 
-    return createStore(
-        counterReducer,
-        Object.assign({}, storeState, preloadedState)
-    );
+    console.log(typeof window);
+
+    if (typeof window === 'undefined') {
+
+        return createStore(
+            counterReducer,
+            Object.assign({}, storeState, preloadedState)
+        );
+
+    } else {
+
+        return createStore(
+            counterReducer,
+            Object.assign({}, storeState, preloadedState),
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        );
+
+    }
 
 }
 

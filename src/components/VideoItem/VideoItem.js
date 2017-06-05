@@ -1,6 +1,9 @@
 import React from 'react';
 import {Component} from 'react';
 
+import CSSModules from 'react-css-modules';
+import styles from './VideoItem.css';
+
 class VideoItem extends Component {
 
     constructor(props) {
@@ -9,11 +12,15 @@ class VideoItem extends Component {
 
     render() {
         const {title, id, onclick, count} = this.props;
+
         return (
-            <div onClick={(e) => { console.log('you clicked ' + title) }}>
+            <div
+                className={ styles.item }
+                onClick={ (e) => { console.log('you clicked ' + title) }}
+            >
                 <h3>{title}</h3>
                 <div>
-                    VIDEO #{id} GOES HERE
+                    This is a description for item #{id}
                 </div>
                 <br />
             </div>
@@ -22,4 +29,4 @@ class VideoItem extends Component {
 
 }
 
-module.exports = VideoItem;
+module.exports = CSSModules(VideoItem, styles);

@@ -1,0 +1,21 @@
+.main {
+
+}
+
+.items {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.counterContainer {
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    margin: 50px 0;
+}
+
+.more {
+    width: 100%;
+    margin: 0 auto;
+}
